@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #09090b;
+  --bg-secondary: #0f0f11;
+  --bg-tertiary: #18181b;
+  --border-color: #27272a;
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+  --accent: #ffffff;
+  --accent-hover: #e4e4e7;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --info: #71717a;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer base {
+  ::selection {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #fff;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--bg-tertiary);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3f3f46;
+  }
+}
+
+@layer components {
+  .field-input {
+    @apply h-11 w-full rounded-lg border border-zinc-800 bg-zinc-950
+           px-3 text-sm text-white placeholder:text-zinc-600
+           focus:border-zinc-500 focus:outline-none focus:ring-1
+           focus:ring-zinc-500 transition-colors;
+  }
+
+  .btn-primary {
+    @apply inline-flex h-11 items-center justify-center gap-2 rounded-lg
+           bg-white px-5 text-sm font-semibold text-black
+           hover:bg-zinc-200 disabled:cursor-not-allowed disabled:opacity-60
+           transition-all active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply inline-flex h-11 items-center justify-center gap-2 rounded-lg
+           border border-zinc-800 bg-zinc-900 px-5 text-sm font-medium
+           text-zinc-300 hover:border-zinc-600 hover:text-white
+           disabled:cursor-not-allowed disabled:opacity-60 transition-all;
+  }
+
+  .btn-danger {
+    @apply inline-flex h-11 items-center justify-center gap-2 rounded-lg
+           bg-red-500/10 border border-red-500/30 px-5 text-sm font-medium
+           text-red-300 hover:bg-red-500/20 hover:text-red-200
+           disabled:cursor-not-allowed disabled:opacity-60 transition-all;
+  }
+
+  .card {
+    @apply rounded-xl border border-zinc-800 bg-zinc-900/40 p-6
+           transition-all hover:border-zinc-700;
+  }
+
+  .card-interactive {
+    @apply card cursor-pointer hover:border-zinc-500
+           hover:shadow-lg hover:shadow-white/5;
+  }
+
+  .glass {
+    @apply bg-zinc-950/80 backdrop-blur-lg border border-zinc-800/50;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent;
+  }
+
+  .status-badge {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1
+           text-xs font-medium;
+  }
+}
