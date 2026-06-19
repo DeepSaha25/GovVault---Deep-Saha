@@ -1,0 +1,74 @@
+name: GovVault CI/CD
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  soroban-contracts:
+    name: Soroban Contracts CI
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust Toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: stable
+          targets: wasm32-unknown-unknown
+
+      - name: Cache Cargo Dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            contracts/governor-contract/target/
+            contracts/treasury-contract/target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.toml') }}
+
+      - name: Compile Treasury Contract
+        run: |
+          cd contracts/treasury-contract
+          cargo build --target wasm32-unknown-unknown --release
+
+      - name: Compile Governor Contract
+        run: |
+          cd contracts/governor-contract
+          cargo build --target wasm32-unknown-unknown --release
+
+      - name: Run Governor Unit Tests
+        run: |
+          cd contracts/governor-contract
+          cargo test
+
+  frontend-nextjs:
+    name: Frontend CI
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Node Dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Run Vitest Tests
+        run: npm run test
+
+      - name: Run Production Next.js Build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_STELLAR_RPC_URL: https://soroban-rpc.testnet.stellar.org
+          NEXT_PUBLIC_GOVERNOR_CONTRACT_ID: CB56DGFX43XUXN2OASKM3SF6I3WWNYUM6KE7HKUKX3JSLZPYQSRQXOHH
+          NEXT_PUBLIC_TREASURY_CONTRACT_ID: CBAFHUW7TL73RG4KYSL53ZF4N4NCJK76KXL3NHKEDDWE2GPVHA52LJ47
