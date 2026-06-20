@@ -14,10 +14,10 @@ export const TREASURY_CONTRACT_ID =
   process.env.NEXT_PUBLIC_TREASURY_CONTRACT_ID || '';
 
 export const PROPOSAL_STATUS_COLORS: Record<string, { bg: string; text: string; dot: string }> = {
-  active: { bg: 'bg-emerald-500/10 border border-emerald-500/20', text: 'text-emerald-400', dot: 'bg-emerald-500' },
-  passed: { bg: 'bg-zinc-800/60 border border-zinc-700/50', text: 'text-zinc-200', dot: 'bg-zinc-300' },
-  failed: { bg: 'bg-red-500/10 border border-red-500/20', text: 'text-red-400', dot: 'bg-red-500' },
-  executed: { bg: 'bg-white/10 border border-white/20', text: 'text-white', dot: 'bg-white' },
+  active: { bg: 'bg-amber-100 border border-amber-250', text: 'text-amber-800', dot: 'bg-amber-600' },
+  passed: { bg: 'bg-emerald-100 border border-emerald-250', text: 'text-emerald-800', dot: 'bg-emerald-600' },
+  failed: { bg: 'bg-rose-100 border border-rose-250', text: 'text-rose-800', dot: 'bg-rose-600' },
+  executed: { bg: 'bg-slate-100 border border-slate-250', text: 'text-slate-800', dot: 'bg-slate-600' },
 };
 
 export const PROPOSAL_STATUS_LABELS: Record<string, string> = {
