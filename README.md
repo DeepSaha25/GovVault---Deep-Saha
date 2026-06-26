@@ -44,15 +44,19 @@ We have integrated **Vercel Web Analytics** to track page views, unique visitors
 
 ### 🖥️ Desktop Web UI (Clean Monochromatic Redesign)
 
-| Landing Screen | Main Dashboard Overview |
-| --- | --- |
-| ![Desktop UI 1](./sub%20assets/ui1.png) | ![Desktop UI 2](./sub%20assets/ui2.png) |
+#### Landing Screen
+![Landing Screen](./sub%20assets/ui1.png)
+
+#### Main Dashboard Overview
+![Main Dashboard Overview](./sub%20assets/ui2.png)
 
 ### 📱 Mobile Responsive Interface
 
-| Home & Connect Page | Order Dashboard |
-| --- | --- |
-| ![Mobile UI 1](./sub%20assets/mobui1.png) | ![Mobile UI 2](./sub%20assets/mobui2.png) |
+#### Home & Connect Page
+![Home & Connect Page](./sub%20assets/mobui1.png)
+
+#### Order Dashboard
+![Order Dashboard](./sub%20assets/mobui2.png)
 
 ### ⚙️ CI/CD Pipeline
 Our GitHub Actions workflow automatically builds the Next.js frontend, runs the lint checkers, compiles the Rust contracts to WebAssembly, and runs both cargo and unit tests upon pushing commits to the main repository:
