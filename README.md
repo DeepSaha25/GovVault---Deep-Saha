@@ -14,6 +14,53 @@ GovVault is a decentralized governance and funding platform built on **Stellar S
 
 ---
 
+## 🚀 Deployed Testnet Specifications
+
+*   **Governor Contract Address**: `CBDPX5ABBW75O3M2JWD5S66ZUL2VDCTOVNCQFZ4YO4KE4VW5APB3S45Y`
+*   **Treasury Contract Address**: `CB4W5E3X4K4MXJAMZNMTLGYAUE7PM44D73TIEQ64EZQ4UQ3MDGYH2ZJB`
+*   **Stellar Network**: Testnet
+
+---
+
+## 📋 Level 4 Submission Checklist & Proofs
+
+### 1. Proof of 10+ User Wallet Interactions
+The project has been successfully shared with community testers. All interactive testing, including proposal creation and quadratic voting, has been captured.
+*   **Live Feedback & Transaction Log**: The active wallet addresses and verified transaction hashes are logged in the [Google Sheets Log](https://docs.google.com/spreadsheets/d/1PQkDNuIQFzSu2BWSQYNa0jO8bHfMzpCDkP7QILJYBwQ/edit?resourcekey=&gid=185701227#gid=185701227).
+
+### 2. User Feedback Summary
+Based on the feedback collected from 10+ real users:
+*   **Ease of Onboarding**: Average score of **4.6 / 5.0**. Users praised the clean monochromatic design and clear wallet status indicators.
+*   **Quadratic Voting Math**: Testers noted that the cost-scaling ($cost = \text{votes}^2$) was easy to understand, especially with the real-time cost feedback display.
+*   **Key Requests**: Users suggested adding a visual chart representing vote distribution and directly showing the transaction links in success toasts.
+
+### 3. Monitoring & Analytics Integration
+We have integrated **Vercel Web Analytics** to track page views, unique visitors, bounce rates, and client-side performance metrics.
+![Vercel Web Analytics](./sub%20assets/analytics.png)
+
+---
+
+## 📸 Media Gallery
+
+### 🖥️ Desktop Web UI (Clean Monochromatic Redesign)
+
+| Landing Screen | Main Dashboard Overview |
+| --- | --- |
+| ![Desktop UI 1](./sub%20assets/ui1.png) | ![Desktop UI 2](./sub%20assets/ui2.png) |
+
+### 📱 Mobile Responsive Interface
+
+| Home & Connect Page | Order Dashboard |
+| --- | --- |
+| ![Mobile UI 1](./sub%20assets/mobui1.png) | ![Mobile UI 2](./sub%20assets/mobui2.png) |
+
+### ⚙️ CI/CD Pipeline
+Our GitHub Actions workflow automatically builds the Next.js frontend, runs the lint checkers, compiles the Rust contracts to WebAssembly, and runs both cargo and unit tests upon pushing commits to the main repository:
+
+![CI/CD Pipeline Running](./sub%20assets/cicd.png)
+
+---
+
 ## 📌 Problem & Solution
 
 ### 🔴 The Problem
@@ -27,40 +74,6 @@ GovVault addresses these inefficiencies by leveraging Stellar’s ultra-low fees
 - **On-Chain Quadratic Voting**: Governs with a cost scale of $cost = \text{votes}^2$ (e.g., 1 vote costs 1 token, 5 votes cost 25 tokens). This curbs whale dominance by making concentrated votes exponentially expensive, balancing power towards broad community consensus.
 - **Timelocked Treasury Executor (ICC)**: Implements split-contract security. Upon proposal approval, the Governor contract calls the Treasury contract via Inter-Contract Communication (ICC) to timelock the funds. This delay provides a critical security buffer for the community to inspect, veto, or freeze the allocation if a malicious takeover is detected.
 - **Frictionless Governance**: Capitalizes on Stellar’s speed and near-zero transaction fees to enable active, low-cost community-driven decision-making and micro-grant funding at scale.
-
----
-
-## 📸 Media Gallery
-
-### 📱 Mobile Responsive Interface
-Below are screenshots demonstrating the mobile-responsive web interface, built using a clean monochromatic (slate and zinc) layout matching Stitch guidelines:
-
-| Home & Connect Page | Order Dashboard |
-| --- | --- |
-| ![Mobile UI 1](./sub%20assets/mobui1.png) | ![Mobile UI 2](./sub%20assets/mobui2.png) |
-
----
-
-### ⚙️ CI/CD Pipeline
-Our GitHub Actions workflow automatically builds the Next.js frontend, runs the lint checkers, compiles the Rust contracts to WebAssembly, and runs both cargo and unit tests upon pushing commits to the main repository:
-
-![CI/CD Pipeline Running](./sub%20assets/cicd.png)
-
----
-
-### 🖥️ Desktop Web UI (Clean Monochromatic Redesign)
-
-| Landing Screen | Main Dashboard Overview |
-| --- | --- |
-| ![Desktop UI 1](./sub%20assets/ui1.png) | ![Desktop UI 2](./sub%20assets/ui2.png) |
-
----
-
-## 🚀 Deployed Testnet Specifications
-
-*   **Governor Contract Address**: `CBDPX5ABBW75O3M2JWD5S66ZUL2VDCTOVNCQFZ4YO4KE4VW5APB3S45Y`
-*   **Treasury Contract Address**: `CB4W5E3X4K4MXJAMZNMTLGYAUE7PM44D73TIEQ64EZQ4UQ3MDGYH2ZJB`
-*   **Stellar Network**: Testnet
 
 ---
 
@@ -107,6 +120,7 @@ GovVault is designed and built to address all technical requirements for product
 - **Contracts**: Rust (Soroban SDK `22.0.11`)
 - **Stellar Integration**: `@stellar/stellar-sdk` & `@creit.tech/stellar-wallets-kit`
 - **Testing**: Vitest + JSDOM for frontend; Cargo test for Rust contracts
+- **Monitoring**: Vercel Web Analytics
 
 ---
 
