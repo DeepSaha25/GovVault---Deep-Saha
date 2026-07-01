@@ -76,6 +76,11 @@ export default function DashboardPage() {
     const votes = input?.votes || 1;
     const actionKey = `vote-${proposalId}`;
 
+    if (proposalId === 9999) {
+      toast.success(`[Demo] Successfully cast ${votes} votes!`);
+      return;
+    }
+
     try {
       setActionLoading((prev) => ({ ...prev, [actionKey]: true }));
       await castVote(proposalId, votes, approve);
@@ -89,6 +94,10 @@ export default function DashboardPage() {
   };
 
   const handleEvaluate = async (proposalId: number) => {
+    if (proposalId === 9999) {
+      toast.success('[Demo] Proposal evaluation triggered!');
+      return;
+    }
     const actionKey = `eval-${proposalId}`;
     try {
       setActionLoading((prev) => ({ ...prev, [actionKey]: true }));
@@ -130,6 +139,25 @@ export default function DashboardPage() {
     const matchesFilter = filter === 'all' || p.status === filter;
     return matchesSearch && matchesFilter;
   });
+
+  let displayProposals = filteredProposals;
+  let showingSample = false;
+  if (displayProposals.length === 0 && !loading) {
+    displayProposals = [{
+      id: 9999,
+      title: 'Sample Proposal: Fund Core Infrastructure',
+      description: 'This is a mock proposal to demonstrate the UI. It requests 50,000 XLM to fund the core infrastructure development team for Q3. Voting here will only trigger a demo toast.',
+      target: 'GBXX...TEST',
+      amount: '50000',
+      yesVotes: 142,
+      noVotes: 12,
+      status: 'active',
+      proposer: 'GABC...TEST',
+      createdAt: Date.now(),
+      executionTime: 0
+    } as any];
+    showingSample = true;
+  }
 
   // Timelocked Treasury Queue items
   const treasuryQueue = proposals.filter((p) => p.status === 'passed');
@@ -345,13 +373,14 @@ export default function DashboardPage() {
                 <FiLoader className="animate-spin h-5 w-5" />
                 <span className="text-xs uppercase tracking-wider font-semibold">Synchronizing state from Soroban...</span>
               </div>
-            ) : filteredProposals.length === 0 ? (
-              <div className="text-center py-16 text-slate-400 border border-slate-200 dark:border-surface-700 rounded bg-white dark:bg-surface-800 text-xs">
-                No proposals found matching this filter.
-              </div>
             ) : (
               <div className="space-y-6">
-                {filteredProposals.map((prop) => {
+                {showingSample && (
+                  <div className="text-center py-4 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-surface-700 rounded bg-slate-50 dark:bg-surface-800 text-xs font-semibold">
+                    No real proposals found on-chain. Showing a sample proposal to demonstrate the workflow.
+                  </div>
+                )}
+                {displayProposals.map((prop) => {
                   const votesToCast = voteInputs[prop.id]?.votes || 1;
                   const quadraticCost = votesToCast * votesToCast;
                   const evalLoading = actionLoading[`eval-${prop.id}`];
