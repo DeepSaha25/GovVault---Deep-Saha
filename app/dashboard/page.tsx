@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { ProposalCountdown } from '@/components/ui/ProposalCountdown';
 import { stellar } from '@/lib/stellar';
-import { GOVERNOR_CONTRACT_ID } from '@/lib/constants';
+import { GOVERNOR_CONTRACT_ID, TREASURY_CONTRACT_ID } from '@/lib/constants';
 import {
   FiPlus,
   FiCheck,
@@ -597,6 +597,36 @@ export default function DashboardPage() {
 
           {/* Right: Treasury Payout Queue & Event Sidebar (4 Columns) */}
           <div className="lg:col-span-4 space-y-6">
+            {/* Treasury Balance Info Card */}
+            <div className="border border-slate-200 dark:border-surface-700 bg-white dark:bg-surface-800 rounded p-4 space-y-4 shadow-sm">
+              <div className="flex justify-between items-center pb-2 border-b border-slate-100 dark:border-surface-750">
+                <span className="font-bold text-xs uppercase tracking-wider text-black dark:text-white">Treasury Contract</span>
+                <span className="text-[9px] bg-emerald-50 text-emerald-600 font-bold px-2 py-0.5 rounded border border-emerald-250 uppercase">
+                  Connected
+                </span>
+              </div>
+              <div className="space-y-1">
+                <p className="text-[10px] text-slate-400 font-semibold uppercase">Contract Balance</p>
+                <p className="text-2xl font-bold text-black dark:text-white font-sans">
+                  {parseFloat(treasuryBalance).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} XLM
+                </p>
+              </div>
+              <div className="text-[10px] space-y-2">
+                <div className="flex justify-between">
+                  <span className="text-slate-400">Address:</span>
+                  <a 
+                    href={stellar.getExplorerLink(TREASURY_CONTRACT_ID, 'contract')}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono text-blue-500 hover:underline flex items-center gap-0.5 font-bold"
+                  >
+                    {stellar.formatAddress(TREASURY_CONTRACT_ID, 6, 6)}
+                    <FiExternalLink className="h-3 w-3" />
+                  </a>
+                </div>
+              </div>
+            </div>
+
             {/* Treasury Payout Queue */}
             <div className="border border-slate-200 dark:border-surface-700 bg-white dark:bg-surface-800 rounded overflow-hidden">
               <div className="p-4 border-b border-slate-200 dark:border-surface-700 bg-slate-50 dark:bg-surface-800 flex justify-between items-center">

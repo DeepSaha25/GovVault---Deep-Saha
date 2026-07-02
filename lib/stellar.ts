@@ -180,7 +180,6 @@ export class StellarHelper {
     for (let attempt = 0; attempt < 30; attempt++) {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       const pollResult = await this.pollTransaction(hash);
-      console.log(`Polling transaction ${hash} (attempt ${attempt + 1}): status = ${pollResult.status}`);
       if (pollResult.status === 'SUCCESS') {
         return { hash };
       }
@@ -224,7 +223,6 @@ export class StellarHelper {
   async pollTransaction(hash: string): Promise<{ status: 'PENDING' | 'SUCCESS' | 'FAILED'; returnValue?: string }> {
     try {
       const response = await this.rpcServer.getTransaction(hash);
-      console.log(`getTransaction status for ${hash}: ${response.status}`);
 
       if (response.status === 'SUCCESS') {
         return {
@@ -239,7 +237,6 @@ export class StellarHelper {
       }
       return { status: 'PENDING' };
     } catch (error) {
-      console.error('Error during pollTransaction:', error);
       return { status: 'PENDING' };
     }
   }
