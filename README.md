@@ -59,7 +59,7 @@ We have integrated **Vercel Web Analytics** to track page views, unique visitors
 ### 🖥️ Desktop Web UI (Clean Monochromatic Redesign)
 
 #### Landing Screen
-![Landing Screen](./sub%20assets/ui1.png)
+![Landing Screen](./sub%20assets/landing%20page.png)
 
 #### Main Dashboard Overview
 ![Main Dashboard Overview](./sub%20assets/ui2.png)
@@ -93,6 +93,13 @@ Based on the community feedback collected in June 2026, the following improvemen
 | **"you improve the landing page"** | Enhanced the hero section with dynamic gradient blobs, modern typography, and better shadow highlights.<br/>[`style: Improve landing page UI and hero section`](https://github.com/DeepSaha25/GovVault/commit/9b004b9) |
 | **"ui is genuinely good, if there dark mode section it would be more good."** / **"the dark mode is awesome make it default"** | Exposed the ThemeToggle and changed the default application theme to dark mode.<br/>[`feat: Set dark mode as default theme`](https://github.com/DeepSaha25/GovVault/commit/530a01b) |
 | **"Adding a sample proposal will help users understand the workflow imo"** | Injected a mock/sample proposal that renders when the on-chain list is empty to let new users preview the voting UI safely.<br/>[`feat: Add sample proposal to help users understand the workflow`](https://github.com/DeepSaha25/GovVault/commit/cacbb8a) |
+| **"add voting countdowns to proposals"** / **"Passed proposals should display timelock countdowns"** | Created interactive countdown timers showing remaining voting periods and passed proposal timelocks.<br/>[`feat: add ProposalCountdown component and map endTime in useGovernor hook`](https://github.com/DeepSaha25/GovVault/commit/962ae85) |
+| **"make a visual YES/NO bar for each card"** | Added segmented YES/NO horizontal vote distribution bars inside proposal cards.<br/>[`feat: add live countdowns, vote distribution bar, and detail page links to proposal cards`](https://github.com/DeepSaha25/GovVault/commit/9d1cb92) |
+| **"Create a dedicated details page for proposals with more information"** | Built a detailed proposal detail view equipped with vote charts, params, and a custom Quadratic vs. Linear what-if comparison analysis.<br/>[`feat: build detailed proposal detail page with vote charts and direct voting console`](https://github.com/DeepSaha25/GovVault/commit/de638bc) and [`feat: create QV vs Linear comparison card and integrate in proposal detail page`](https://github.com/DeepSaha25/GovVault/commit/838792e) |
+| **"Show events log table in Analytics page"** | Added a dynamic, formatted Contract Events log history table showing topic layers, payload decoders, block heights, and explorer links on the Analytics page.<br/>[`feat: add recent contract events log table to governance analytics page`](https://github.com/DeepSaha25/GovVault/commit/99d1c35) |
+| **"Directly link transaction hashes to block explorers in success messages"** | Upgraded all success toasts (proposal submit, vote, evaluate, release) to display a dynamic, clickable direct link to Stellar Expert.<br/>[`refactor: rename useGovernor to tsx and add explorer links to success toasts`](https://github.com/DeepSaha25/GovVault/commit/fe9f19a) |
+| **"Save direct XLM transfer history"** | Polished the direct XLM transfer page to store and show the last 5 successful transfers inside browser local storage.<br/>[`feat: polish direct XLM transfer page and add local transfer history tracker`](https://github.com/DeepSaha25/GovVault/commit/3bf8ef7) |
+| **"Integrate GSAP and Three.js for a professional 3D visual theme"** | Embedded a fixed full-screen interactive 3D WebGL consensus particle network and GSAP stagger slide-in hero animations on the landing page.<br/>[`feat: make 3D particle constellation canvas full screen background`](https://github.com/DeepSaha25/GovVault/commit/75dba8a) and [`style: remove solid background from outer page container to make 3D particles canvas visible`](https://github.com/DeepSaha25/GovVault/commit/cf5b1d1) |
 
 ---
 
