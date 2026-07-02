@@ -28,6 +28,7 @@ export interface Proposal {
   noVotes: number;
   status: ProposalStatus;
   executionTime: number; // Timelock check (timestamp)
+  endTime: number; // Voting period end time (timestamp)
   createdAt: number;
 }
 

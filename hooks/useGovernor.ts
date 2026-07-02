@@ -72,7 +72,8 @@ export function useGovernor(publicKey: string | undefined) {
             noVotes: Number(raw.no_votes),
             status: ['active', 'passed', 'failed', 'executed'][Number(raw.status)] as any,
             executionTime: Number(raw.execution_time),
-            createdAt: Number(raw.end_time) - 300,
+            endTime: Number(raw.end_time),
+            createdAt: Number(raw.end_time) - 86400, // 24 hour duration on testnet
           });
         }
       }
